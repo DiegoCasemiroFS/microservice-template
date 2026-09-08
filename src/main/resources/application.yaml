@@ -1,3 +1,10 @@
+app:
+  security:
+    enabled: true
+    authorities-claim: scope
+    authority-prefix: ROLE_
+    public-paths: []
+
 spring:
   application:
     name: microservice-template
@@ -6,6 +13,13 @@ spring:
     basename: messages
     encoding: UTF-8
     fallback-to-system-locale: false
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${OIDC_ISSUER_URI:}
+          audiences: ${SERVICE_AUDIENCE:}
 
 server:
   port: 8080
